@@ -9,6 +9,7 @@ interface Mission {
   description: string;
   website: string;
   wikipedia: string;
+  link: string;
 }
 
 interface MissionData {
@@ -35,30 +36,42 @@ function App() {
   if (loading) return <p>Loading...</p>; // could make this pretty too
   if (error) return <p>Error :(</p>; // could use some better error handling here
   
-  const headers = data && Object.keys(data.missions[0]).filter(key => key !== 'id' && key !== '__typename');
-  console.log(headers);
+  // const headers = data && Object.keys(data.missions[0]).filter(key => key !== 'id' && key !== '__typename');
+  const headers = ['name', 'manufacturers', 'description', 'socials']
+  const links = ['twitter', 'wikipedia', 'website'];
+  console.log(data);
 
   return (
     <div className="App">
-      <h3> SpaceX missions </h3>
+      <h3> SpaceX Missions </h3>
       <table className="styled-table">
         <thead>
             <tr>
                 {headers?.map(header => {
-                  if (header !== 'id' && header !== "__typename") {
                     return <th key={header}>{header.charAt(0).toUpperCase() + header.slice(1)}</th>
                   }
-                  return null;
-                }
                 )}
             </tr>
         </thead>
         <tbody>
             {data?.missions.map(mission => (
                 <tr key={mission.id}>
-                    {Object.values(mission).map(value => (
-                        value !== "Mission" && value !== mission.id ? <td key={value}>{value}</td> : null
-                    ))} 
+                    {headers?.map(header => {
+                        if (header === 'socials') {
+                          return <td>
+                          <ul>
+                            {links.map(link => {
+                                const anchorLink = mission[link as keyof Mission];
+                                return anchorLink && <li><a key={link} href={anchorLink as string}>{link}</a></li>;
+                              }
+                            )}
+                          </ul>
+                          </td>
+                        } 
+                        return <td key={header}>{mission[header as keyof Mission]}</td>
+                      }
+                    )}
+                    
                 </tr>
             ))}
         </tbody>
