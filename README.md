@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+# Run the App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. After cloning the app, run `yarn install`
 
-## Available Scripts
+2. Start the server with `yarn start`
 
-In the project directory, you can run:
+3. Run the test with `yarn test`
 
-### `yarn start`
+> Note: you can click on the column label to sort the columns alphabetically, will need to implement better ui for it if spent more time
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## TODOs for future
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Put `<Table>` in it's own component
 
-### `yarn test`
+- Save sorted objects so that they don't need to be resorted
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Make custom loading and error components
 
-### `yarn build`
+- Break bigger functions into smaller ones for separation of concern and easy debugging
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Add more test cases for sorting and filtering
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Add more styling(possibly adding packages like material-ui) to minimize back-breaking on css
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Adding some logos instead of the links, arrow indicator on columns based on the 0 or 1 state indicating sorting desc or asc, hover states, etc.
 
-### `yarn eject`
+- Set up to handle large data set maybe utilizing lazy loading
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ...(ノ°∀°)ノ⌒･:.｡. .｡.:･゜ﾟ･*☆

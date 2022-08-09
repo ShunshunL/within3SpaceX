@@ -49,10 +49,10 @@ export function App() {
     data && setMisssions(data.missions);
   }, [data]);
 
-  if (loading) return <p>Loading...</p>; // could make this pretty too
-  if (error) return <p>Error :(</p>; // could use some better error handling here
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
-  const headers = ["name", "manufacturers", "description", "links"]; // could populate dynamically if I didn't want to combine the links
+  const headers = ["name", "manufacturers", "description", "links"]; // could populate dynamically if we're not combining the links
   const links = ["twitter", "wikipedia", "website"];
 
   const directions: { [key: string]: any } = {};
@@ -60,10 +60,10 @@ export function App() {
     directions[header] = SortingDirections.Unsorted;
   }
 
-  // could store sorted data for efficiency in the future
   const sortColumn = (column: string) => {
     const copyData = [...missions];
     const currentDirection = sortingDirections[column];
+    // if we're already sorted by this column, reverse the order of the data
     const sortedData = copyData?.sort((a: Mission, b: Mission) => {
       if (
         currentDirection === SortingDirections.Ascending ||
@@ -78,6 +78,7 @@ export function App() {
         return 0;
       }
     });
+    // update the sorting directions for the next time we sort by this column
     const nextDirection =
       currentDirection === SortingDirections.Ascending ||
       currentDirection === SortingDirections.Unsorted
@@ -90,6 +91,9 @@ export function App() {
   };
 
   const getFilteredRows = (rows: Mission[], filter: string) => {
+    // if the filter is empty, return the original rows
+    // otherwise, return the rows that match the filter
+    if (!filter) return rows;
     return rows.filter((row: Mission) => {
       return Object.values(row).some((value: string) =>
         value?.toString().toLowerCase().includes(filter.toLowerCase())
@@ -105,7 +109,6 @@ export function App() {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      {/* could make Table it's own component */}
       <table className="styled-table">
         <thead>
           <tr>
