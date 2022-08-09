@@ -36,14 +36,14 @@ function App() {
   if (loading) return <p>Loading...</p>; // could make this pretty too
   if (error) return <p>Error :(</p>; // could use some better error handling here
   
-  // const headers = data && Object.keys(data.missions[0]).filter(key => key !== 'id' && key !== '__typename');
-  const headers = ['name', 'manufacturers', 'description', 'socials']
+  const headers = ['name', 'manufacturers', 'description', 'links']; 
   const links = ['twitter', 'wikipedia', 'website'];
   console.log(data);
 
   return (
     <div className="App">
-      <h3> SpaceX Missions </h3>
+      <h1> SpaceX Missions </h1>
+      {/* could make Table it's own component */}
       <table className="styled-table">
         <thead>
             <tr>
@@ -57,7 +57,7 @@ function App() {
             {data?.missions.map(mission => (
                 <tr key={mission.id}>
                     {headers?.map(header => {
-                        if (header === 'socials') {
+                        if (header === 'links') {
                           return <td>
                           <ul>
                             {links.map(link => {
